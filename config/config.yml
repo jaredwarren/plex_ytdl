@@ -1,0 +1,7 @@
+host: :8001
+https: false
+player:
+  song_root: downloads
+  thumb_root: downloads
+log:
+  level: 0
