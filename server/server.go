@@ -45,9 +45,12 @@ func StartHTTPServer(cfg *Config) *HTMLServer {
 	r.HandleFunc("/", s.HomeHandler).Methods("GET")
 	r.HandleFunc("/download", s.DownloadHandler).Methods("POST")
 
+	r.HandleFunc("/play/{file}", s.PlayHandler).Methods("GET")
+
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-	// r.PathPrefix("/song_files/").Handler(http.StripPrefix("/song_files/", http.FileServer(http.Dir(viper.GetString("player.song_root")))))
-	// r.PathPrefix("/thumb_files/").Handler(http.StripPrefix("/thumb_files/", http.FileServer(http.Dir(viper.GetString("player.thumb_root")))))
+
+	r.PathPrefix("/video/").Handler(http.StripPrefix("/video/", http.FileServer(http.Dir(viper.GetString("player.song_root")))))
+	r.PathPrefix("/thumb/").Handler(http.StripPrefix("/thumb/", http.FileServer(http.Dir(viper.GetString("player.thumb_root")))))
 
 	// Create the HTML Server
 	htmlServer := HTMLServer{

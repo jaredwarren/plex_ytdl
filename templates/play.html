@@ -1,0 +1,27 @@
+{{template "base" .}}
+
+{{define "title"}}{{.Video}}{{end}}
+
+{{define "nav"}}
+<div class="container-fluid">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="/"><span
+                    class="material-symbols-outlined align-middle">youtube_activity</span> <span>Download</span></a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="/config"><span class="material-symbols-outlined align-middle">settings</span>
+                <span class="align-middle"></span></a>
+        </li> -->
+    </ul>
+</div>
+{{end}}
+
+{{define "main"}}
+<div class="container">
+    <video style="width: 100%;" controls poster="/thumb/{{.Thumb}}">
+        <source src="/video/{{.Video}}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+{{end}}
